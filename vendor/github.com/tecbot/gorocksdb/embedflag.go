@@ -1,18 +1,15 @@
-// +build embed
-
 package gorocksdb
 
 // #cgo CXXFLAGS: -std=c++11
-// #cgo CPPFLAGS: -I${SRCDIR}/../../cockroachdb/c-lz4/internal/lib
-// #cgo CPPFLAGS: -I${SRCDIR}/../../cockroachdb/c-rocksdb/internal/include
-// #cgo CPPFLAGS: -I${SRCDIR}/../../cockroachdb/c-snappy/internal
+// #cgo CPPFLAGS: -I${SRCDIR}/../../facebook/rocksdb/include
+// #cgo CFLAGS: -I${SRCDIR}/../../facebook/rocksdb/include
+// #cgo LDFLAGS: -I${SRCDIR}/../../facebook/rocksdb
+// #cgo LDFLAGS: -lrocksdb
 // #cgo LDFLAGS: -lstdc++
+// #cgo LDFLAGS: -lm
+// #cgo LDFLAGS: -lz
+// #cgo LDFLAGS: -lbz2
+// #cgo LDFLAGS: -lsnappy
 // #cgo darwin LDFLAGS: -Wl,-undefined -Wl,dynamic_lookup
 // #cgo !darwin LDFLAGS: -Wl,-unresolved-symbols=ignore-all -lrt
 import "C"
-
-import (
-	_ "github.com/cockroachdb/c-lz4"
-	_ "github.com/cockroachdb/c-rocksdb"
-	_ "github.com/cockroachdb/c-snappy"
-)
