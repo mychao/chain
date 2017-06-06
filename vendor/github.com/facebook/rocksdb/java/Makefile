@@ -6,10 +6,14 @@ NATIVE_JAVA_CLASSES = org.rocksdb.AbstractCompactionFilter\
 	org.rocksdb.BlockBasedTableConfig\
 	org.rocksdb.BloomFilter\
 	org.rocksdb.Checkpoint\
+	org.rocksdb.ClockCache\
 	org.rocksdb.ColumnFamilyHandle\
 	org.rocksdb.ColumnFamilyOptions\
+	org.rocksdb.CompactionOptionsFIFO\
+	org.rocksdb.CompactionOptionsUniversal\
 	org.rocksdb.Comparator\
 	org.rocksdb.ComparatorOptions\
+	org.rocksdb.CompressionOptions\
 	org.rocksdb.DBOptions\
 	org.rocksdb.DirectComparator\
 	org.rocksdb.DirectSlice\
@@ -21,6 +25,7 @@ NATIVE_JAVA_CLASSES = org.rocksdb.AbstractCompactionFilter\
 	org.rocksdb.HashLinkedListMemTableConfig\
 	org.rocksdb.HashSkipListMemTableConfig\
 	org.rocksdb.Logger\
+	org.rocksdb.LRUCache\
 	org.rocksdb.MergeOperator\
 	org.rocksdb.Options\
 	org.rocksdb.PlainTableConfig\
@@ -67,11 +72,17 @@ JAVA_TESTS = org.rocksdb.BackupableDBOptionsTest\
 	org.rocksdb.BlockBasedTableConfigTest\
         org.rocksdb.util.BytewiseComparatorTest\
 	org.rocksdb.CheckPointTest\
+	org.rocksdb.ClockCacheTest\
 	org.rocksdb.ColumnFamilyOptionsTest\
 	org.rocksdb.ColumnFamilyTest\
+	org.rocksdb.CompactionOptionsFIFOTest\
+	org.rocksdb.CompactionOptionsUniversalTest\
+	org.rocksdb.CompactionPriorityTest\
+	org.rocksdb.CompactionStopStyleTest\
 	org.rocksdb.ComparatorOptionsTest\
 	org.rocksdb.ComparatorTest\
 	org.rocksdb.CompressionOptionsTest\
+	org.rocksdb.CompressionTypesTest\
 	org.rocksdb.DBOptionsTest\
 	org.rocksdb.DirectComparatorTest\
 	org.rocksdb.DirectSliceTest\
@@ -83,6 +94,7 @@ JAVA_TESTS = org.rocksdb.BackupableDBOptionsTest\
 	org.rocksdb.InfoLogLevelTest\
 	org.rocksdb.KeyMayExistTest\
         org.rocksdb.LoggerTest\
+    org.rocksdb.LRUCacheTest\
 	org.rocksdb.MemTableTest\
 	org.rocksdb.MergeTest\
 	org.rocksdb.MixedOptionsTest\
@@ -105,6 +117,7 @@ JAVA_TESTS = org.rocksdb.BackupableDBOptionsTest\
 	org.rocksdb.TransactionLogIteratorTest\
 	org.rocksdb.TtlDBTest\
 	org.rocksdb.StatisticsCollectorTest\
+	org.rocksdb.WALRecoveryModeTest\
 	org.rocksdb.WriteBatchHandlerTest\
 	org.rocksdb.WriteBatchTest\
         org.rocksdb.WriteBatchThreadedTest\
@@ -184,7 +197,7 @@ column_family_sample: java
 	$(AM_V_at)@rm -rf /tmp/rocksdbjni
 
 resolve_test_deps:
-	test -s "$(JAVA_TEST_LIBDIR)" || mkdir -p "$(JAVA_TEST_LIBDIR)"
+	test -d "$(JAVA_TEST_LIBDIR)" || mkdir -p "$(JAVA_TEST_LIBDIR)"
 	test -s "$(JAVA_JUNIT_JAR)" || cp $(MVN_LOCAL)/junit/junit/4.12/junit-4.12.jar $(JAVA_TEST_LIBDIR) || curl -k -L -o $(JAVA_JUNIT_JAR) http://search.maven.org/remotecontent?filepath=junit/junit/4.12/junit-4.12.jar
 	test -s "$(JAVA_HAMCR_JAR)" || cp $(MVN_LOCAL)/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar $(JAVA_TEST_LIBDIR) || curl -k -L -o $(JAVA_HAMCR_JAR) http://search.maven.org/remotecontent?filepath=org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
 	test -s "$(JAVA_MOCKITO_JAR)" || cp $(MVN_LOCAL)/org/mockito/mockito-all/1.10.19/mockito-all-1.10.19.jar $(JAVA_TEST_LIBDIR) || curl -k -L -o "$(JAVA_MOCKITO_JAR)" http://search.maven.org/remotecontent?filepath=org/mockito/mockito-all/1.10.19/mockito-all-1.10.19.jar
