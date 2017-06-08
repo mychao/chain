@@ -4,7 +4,7 @@ package gorocksdb
 // #cgo CPPFLAGS: -I${SRCDIR}/../../facebook/rocksdb/include
 // #cgo CFLAGS: -I${SRCDIR}/../../facebook/rocksdb/include
 // #cgo LDFLAGS: -I${SRCDIR}/../../facebook/rocksdb
-// #cgo LDFLAGS: -lrocksdb
+// #cgo LDFLAGS: ${SRCDIR}/../../facebook/rocksdb/librocksdb.a
 // #cgo LDFLAGS: -lstdc++
 // #cgo LDFLAGS: -lm
 // #cgo LDFLAGS: -lz
