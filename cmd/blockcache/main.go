@@ -130,6 +130,7 @@ func main() {
 			Handler: http.DefaultServeMux,
 			TLSConfig: &tls.Config{
 				Certificates: []tls.Certificate{cert},
+				MinVersion:   tls.VersionTLS12,
 			},
 		}
 		err = server.ListenAndServeTLS("", "")

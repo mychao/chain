@@ -151,7 +151,8 @@ func runServer() {
 
 	if *rootCAs != "" {
 		http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{
-			RootCAs: loadRootCAs(*rootCAs),
+			RootCAs:    loadRootCAs(*rootCAs),
+			MinVersion: tls.VersionTLS12,
 		}
 	}
 
@@ -226,6 +227,7 @@ func runServer() {
 
 		server.TLSConfig = &tls.Config{
 			Certificates: []tls.Certificate{cert},
+			MinVersion:   tls.VersionTLS12,
 		}
 		err = server.ListenAndServeTLS("", "") // uses TLS certs from above
 		if err != nil {
