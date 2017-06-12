@@ -9,7 +9,7 @@ package gorocksdb
 // #cgo LDFLAGS: -lm
 // #cgo LDFLAGS: -lz
 // #cgo LDFLAGS: -lbz2
-// #cgo LDFLAGS: -lsnappy
+// #cgo LDFLAGS: ${SRCDIR}/../../google/snappy/build/libsnappy.a
 // #cgo darwin LDFLAGS: -Wl,-undefined -Wl,dynamic_lookup
 // #cgo !darwin LDFLAGS: -Wl,-unresolved-symbols=ignore-all -lrt
 import "C"
