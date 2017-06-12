@@ -4,6 +4,7 @@ set -eo pipefail
 
 : ${GOPATH:?must be set}
 
-cd "$GOPATH"/chain/vendor/github.com/facebook/rocksdb
+# cd "$GOPATH"/src/chain/vendor/github.com/facebook/rocksdb
+ls "$GOPATH"/src
 make static_lib
 
